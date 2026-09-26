@@ -10,8 +10,8 @@ export class UpdateUserDto {
   email?: string;
 
   @IsOptional()
-  @IsIn(['admin', 'empleado', 'cajero'])
-  rol?: 'admin' | 'empleado' | 'cajero';
+  @IsIn(['administrador', 'empleado'])
+  rol?: 'administrador' | 'empleado';
 
   @IsOptional()
   @IsBoolean()

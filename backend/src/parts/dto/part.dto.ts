@@ -1,15 +1,21 @@
 import { IsOptional, IsString } from 'class-validator';
 
-export class CreateCategoryDto {
+export class CreatePartDto {
   @IsString()
   nombre: string;
 
   @IsOptional()
   @IsString()
   descripcion?: string;
+
+  @IsString()
+  numero_parte: string;
+
+  @IsString()
+  auto: string;
 }
 
-export class UpdateCategoryDto {
+export class UpdatePartDto {
   @IsOptional()
   @IsString()
   nombre?: string;
@@ -17,4 +23,12 @@ export class UpdateCategoryDto {
   @IsOptional()
   @IsString()
   descripcion?: string;
+
+  @IsOptional()
+  @IsString()
+  numero_parte?: string;
+
+  @IsOptional()
+  @IsString()
+  auto?: string;
 }

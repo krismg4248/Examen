@@ -1,94 +1,64 @@
 # Backend refaccionaria (NestJS + Supabase + bcrypt)
 
-API de administracion para inventario, clientes, proveedores y ventas.
+Sistema de administracion con **dos tablas** (`usuarios` y `piezas`) y **dos roles**.
 
-## 1. Crear proyecto en Supabase
+| Rol | Permisos |
+|---|---|
+| `administrador` | Consultar, registrar, modificar y borrar piezas. Gestionar usuarios. |
+| `empleado` | Solo consultar piezas. |
 
-1. Entra a [https://supabase.com](https://supabase.com) y crea un proyecto.
-2. Copia **Project URL** y **service_role** (Settings > API). Usa `service_role` solo en el backend.
-3. En **SQL Editor**, pega y ejecuta `supabase/schema.sql`.
+## Arranque
 
-## 2. Configurar el backend
+1. Ejecuta `supabase/schema.sql` en el SQL Editor de Supabase (si las tablas aun no existen).
+2. Configura `.env` con `SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY`.
+3. Siembra usuarios de prueba:
 
 ```bash
 cd backend
-copy .env.example .env
-```
-
-Edita `.env`:
-
-```
-PORT=3000
-JWT_SECRET=una-clave-larga-y-secreta
-JWT_EXPIRES_IN=8h
-SUPABASE_URL=https://xxxx.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=eyJ...
-```
-
-```bash
-npm install
+npm run seed
 npm run start:dev
 ```
 
-La API queda en `http://localhost:3000/api`.
+API: `http://localhost:3000/api`
 
-## 3. Autenticacion
+## Usuarios de prueba
 
-Las contrasenas se cifran con **bcrypt** (libreria `bcryptjs`, 10 rounds) antes de guardarse en `usuarios.password_hash`. El login compara con `bcrypt.compare` y entrega un JWT.
+| Rol | Email | Contrasena |
+|---|---|---|
+| Administrador | `admin@refaccionaria.com` | `Admin1234` |
+| Empleado | `empleado@refaccionaria.com` | `Empleado1234` |
 
-### Registrar usuario
-
-`POST /api/auth/registro`
-
-```json
-{
-  "nombre": "Admin Taller",
-  "email": "admin@refaccionaria.com",
-  "password": "secreto123",
-  "rol": "admin"
-}
-```
-
-Roles: `admin`, `empleado`, `cajero`.
-
-### Iniciar sesion
+Las contrasenas se guardan cifradas con bcrypt.
 
 `POST /api/auth/login`
 
 ```json
 {
   "email": "admin@refaccionaria.com",
-  "password": "secreto123"
+  "password": "Admin1234"
 }
 ```
 
-Usa el `access_token` en el header: `Authorization: Bearer <token>`.
+Usa `Authorization: Bearer <access_token>`.
 
-## 4. Endpoints
+## Endpoints
 
-| Recurso | Ruta | Notas |
+| Metodo | Ruta | Quien |
 |---|---|---|
-| Auth | `/api/auth/registro`, `/login`, `/me` | bcrypt + JWT |
-| Usuarios | `/api/usuarios` | solo admin |
-| Categorias | `/api/categorias` | filtros, frenos, electrico, etc. |
-| Marcas | `/api/marcas` | Bosch, Monroe, NGK... |
-| Productos | `/api/productos` | SKU, stock, compatibilidad |
-| Bajo stock | `/api/productos/bajo-stock` | alerta de reorden |
-| Ajuste stock | `PATCH /api/productos/:id/stock` | `{ "cantidad": 10 }` o negativa |
-| Clientes | `/api/clientes` | RFC y contacto |
-| Proveedores | `/api/proveedores` | mayoreo |
-| Ventas | `/api/ventas` | descuenta stock y calcula IVA 16% |
+| POST | `/api/auth/login` | publico |
+| GET | `/api/auth/me` | ambos |
+| POST | `/api/auth/registro` | administrador |
+| GET | `/api/usuarios` | administrador |
+| GET | `/api/piezas` | ambos |
+| POST / PATCH / DELETE | `/api/piezas` | administrador |
 
-### Ejemplo de venta
-
-`POST /api/ventas`
+### Ejemplo de pieza
 
 ```json
 {
-  "cliente_id": "uuid-opcional",
-  "metodo_pago": "efectivo",
-  "items": [
-    { "producto_id": "uuid-producto", "cantidad": 2 }
-  ]
+  "nombre": "Filtro de aceite",
+  "descripcion": "Filtro original para motor 2.0",
+  "numero_parte": "FO-12345",
+  "auto": "Nissan Sentra 2018"
 }
 ```
