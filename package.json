@@ -1,0 +1,12 @@
+{
+  "name": "examen-torque",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Monorepo TORQUE: frontend Svelte + backend NestJS",
+  "scripts": {
+    "build": "npm install --prefix frontend && npm run build --prefix frontend && npm install --prefix backend --include=dev && npm run build --prefix backend && node scripts/copy-frontend.js",
+    "start": "npm run start:prod --prefix backend",
+    "build:frontend": "npm run build --prefix frontend",
+    "build:backend": "npm run build --prefix backend"
+  }
+}

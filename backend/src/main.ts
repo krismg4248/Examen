@@ -15,7 +15,7 @@ async function bootstrap() {
   );
   const port = process.env.PORT || 3000;
   await app.listen(port);
-  console.log(`API refaccionaria en http://localhost:${port}/api`);
+  console.log(`TORQUE en http://localhost:${port} — API en /api`);
 }
 
 bootstrap();
