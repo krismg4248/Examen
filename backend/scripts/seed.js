@@ -41,22 +41,58 @@ const USERS = [
 
 const PARTS = [
   {
-    nombre: 'Filtro de aceite',
-    descripcion: 'Filtro de aceite para motor 2.0',
-    numero_parte: 'FO-12345',
-    auto: 'Nissan Sentra 2018',
+    nombre: 'Balatas Duralast de Cerámica',
+    descripcion: 'Modelo MKD1592. Balatas de cerámica, 1 año de garantía. SKU #511149',
+    numero_parte: 'MKD1592',
+    auto: 'Verificar compatibilidad con el vehículo',
   },
   {
-    nombre: 'Pastillas de freno delanteras',
-    descripcion: 'Juego de pastillas ceramicas',
-    numero_parte: 'PF-77821',
-    auto: 'Volkswagen Jetta 2016',
+    nombre: 'Balatas Duralast de Cerámica',
+    descripcion: 'Modelo D866. Balatas de cerámica, 1 año de garantía. SKU #350087',
+    numero_parte: 'D866',
+    auto: 'Verificar compatibilidad con el vehículo',
   },
   {
-    nombre: 'Bujia iridium',
-    descripcion: 'Bujia de alta duracion',
-    numero_parte: 'BJ-4410',
-    auto: 'Chevrolet Aveo 2017',
+    nombre: 'Balatas Duralast de Cerámica',
+    descripcion: 'Modelo MKD1363. Balatas de cerámica, 1 año de garantía. SKU #208716',
+    numero_parte: 'MKD1363',
+    auto: 'Verificar compatibilidad con el vehículo',
+  },
+  {
+    nombre: 'Marcha Remanufacturada Duralast',
+    descripcion: 'Modelo DL3185. Marcha remanufacturada. SKU #986570',
+    numero_parte: 'DL3185',
+    auto: 'Verificar compatibilidad con el vehículo',
+  },
+  {
+    nombre: 'Marcha Duralast',
+    descripcion: 'Modelo DL3188. Marcha. SKU #842',
+    numero_parte: 'DL3188',
+    auto: 'Verificar compatibilidad con el vehículo',
+  },
+  {
+    nombre: 'Marcha Duralast',
+    descripcion: 'Modelo DL3191. Marcha. SKU #12342',
+    numero_parte: 'DL3191',
+    auto: 'Verificar compatibilidad con el vehículo',
+  },
+  {
+    nombre: 'Batería Duralast de Plomo-Ácido',
+    descripcion: 'Modelo 35-DL. Celda húmeda, libre de mantenimiento, 3 años de garantía. SKU #938907',
+    numero_parte: '35-DL',
+    auto: 'Verificar compatibilidad con el vehículo',
+  },
+  {
+    nombre: 'Batería TotalPro de Plomo-Ácido',
+    descripcion: 'Modelo 47-T. Celda húmeda, 2 años de garantía. SKU #288024',
+    numero_parte: '47-T',
+    auto: 'Verificar compatibilidad con el vehículo',
+  },
+  {
+    nombre: 'Batería Valucraft de Plomo-Ácido',
+    descripcion: 'Modelo 47-VL. Celda húmeda, libre de mantenimiento, 2 años de garantía. SKU #288024',
+    numero_parte: '47-VL',
+    auto: 'Verificar compatibilidad con el vehículo',
   },
 ];
 
