@@ -96,6 +96,36 @@ const PARTS = [
   },
 ];
 
+const CARS = [
+  {
+    marca: 'Nissan',
+    modelo: 'Sentra',
+    anio: 2018,
+    placa: 'ABC-123-A',
+    propietario: 'Juan Perez',
+    situacion: 'Falta reparacion',
+    notas: 'Ruido en frenos delanteros',
+  },
+  {
+    marca: 'Volkswagen',
+    modelo: 'Jetta',
+    anio: 2016,
+    placa: 'XYZ-456-B',
+    propietario: 'Maria Lopez',
+    situacion: 'En proceso',
+    notas: 'Cambio de balatas en proceso',
+  },
+  {
+    marca: 'Chevrolet',
+    modelo: 'Aveo',
+    anio: 2017,
+    placa: 'QWE-789-C',
+    propietario: 'Carlos Ruiz',
+    situacion: 'Terminado',
+    notas: 'Servicio completo entregado',
+  },
+];
+
 async function upsertUsers() {
   for (const user of USERS) {
     const password_hash = await bcrypt.hash(user.password, 10);
@@ -147,9 +177,27 @@ async function upsertParts() {
   }
 }
 
+async function upsertCars() {
+  for (const car of CARS) {
+    if (car.placa) {
+      const { data: existing, error: findError } = await supabase
+        .from('autos')
+        .select('id')
+        .eq('placa', car.placa)
+        .maybeSingle();
+      if (findError) throw new Error(findError.message);
+      if (existing) continue;
+    }
+    const { error } = await supabase.from('autos').insert(car);
+    if (error) throw new Error(error.message);
+    console.log(`Auto: ${car.marca} ${car.modelo} (${car.situacion})`);
+  }
+}
+
 async function main() {
   await upsertUsers();
   await upsertParts();
+  await upsertCars();
   console.log('Seed listo.');
 }
 

@@ -70,3 +70,25 @@ export function updatePieza(token, id, payload) {
     body: JSON.stringify(payload),
   })
 }
+
+export function getAutos(token) {
+  return request('/autos', {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+}
+
+export function createAuto(token, payload) {
+  return request('/autos', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify(payload),
+  })
+}
+
+export function updateAuto(token, id, payload) {
+  return request(`/autos/${id}`, {
+    method: 'PATCH',
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify(payload),
+  })
+}

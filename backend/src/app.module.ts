@@ -7,6 +7,7 @@ import { SupabaseModule } from './supabase/supabase.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { PartsModule } from './parts/parts.module';
+import { CarsModule } from './cars/cars.module';
 
 function resolveFrontendDist(): string {
   const candidates = [
@@ -30,6 +31,7 @@ function resolveFrontendDist(): string {
     AuthModule,
     UsersModule,
     PartsModule,
+    CarsModule,
   ],
 })
 export class AppModule {}

@@ -7,6 +7,9 @@
   --color-taupe: #9a7c65;
   --color-sand: #c0a088;
   --color-cream: #dac6b6;
+  --color-status-red: #b42318;
+  --color-status-yellow: #a16207;
+  --color-status-green: #157a3c;
   --font-display: 'Syne', sans-serif;
   --font-sans: 'Manrope', sans-serif;
 }
